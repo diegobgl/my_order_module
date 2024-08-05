@@ -1,0 +1,11 @@
+<odoo>
+    <report
+        id="action_report_work_order_payment"
+        model="work.order.payment"
+        string="Liquidación de Pago"
+        report_type="qweb-pdf"
+        name="my_order_module.report_work_order_payment"
+        file="my_order_module.report_work_order_payment"
+        print_report_name="'Liquidación de Pago - %s' % (object.name)"
+    />
+</odoo>

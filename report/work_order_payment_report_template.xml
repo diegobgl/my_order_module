@@ -1,0 +1,38 @@
+<odoo>
+    <template id="report_work_order_payment">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <div class="page">
+                    <h2>Liquidación de Pago</h2>
+                    <p><strong>Referencia:</strong> <t t-esc="doc.name"/></p>
+                    <p><strong>Trabajador:</strong> <t t-esc="doc.worker_id.name"/></p>
+                    <p><strong>Fecha de Inicio:</strong> <t t-esc="doc.start_date"/></p>
+                    <p><strong>Fecha de Fin:</strong> <t t-esc="doc.end_date"/></p>
+                    <p><strong>Monto Total:</strong> <t t-esc="doc.total_amount"/></p>
+                    <p><strong>Pagado:</strong> <t t-esc="doc.is_paid and 'Sí' or 'No'"/></p>
+                    <h3>Órdenes de Trabajo</h3>
+                    <table class="table table-sm">
+                        <thead>
+                            <tr>
+                                <th>Título</th>
+                                <th>Número de Orden</th>
+                                <th>Valor</th>
+                                <th>Fecha</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="doc.order_ids" t-as="order">
+                                <tr>
+                                    <td><t t-esc="order.title"/></td>
+                                    <td><t t-esc="order.order_number"/></td>
+                                    <td><t t-esc="order.value"/></td>
+                                    <td><t t-esc="order.date"/></td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>

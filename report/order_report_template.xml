@@ -1,0 +1,40 @@
+<odoo>
+    <template id="report_work_order">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <div class="page">
+                    <h2>Orden de Trabajo</h2>
+                    <p><strong>Número Orden:</strong> <t t-esc="doc.order_number"/></p>
+                    <p><strong>Cliente:</strong> <t t-esc="doc.client_id.name"/></p>
+                    <p><strong>Trabajador:</strong> <t t-esc="doc.worker_id.name"/></p>
+                    <p><strong>Fecha:</strong> <t t-esc="doc.date"/></p>
+                    <p><strong>Dirección:</strong> <t t-esc="doc.address"/></p>
+                    <p><strong>Ciudad:</strong> <t t-esc="doc.city"/></p>
+                    <p><strong>Bloque Horario:</strong> <t t-esc="doc.time_block"/></p>
+                    <p><strong>Productos:</strong></p>
+                    <table class="table table-sm">
+                        <thead>
+                            <tr>
+                                <th>Producto</th>
+                                <th>Cantidad</th>
+                                <th>Precio Unitario</th>
+                                <th>Subtotal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="doc.product_ids" t-as="line">
+                                <tr>
+                                    <td><t t-esc="line.product_id.name"/></td>
+                                    <td><t t-esc="line.quantity"/></td>
+                                    <td><t t-esc="line.price_unit"/></td>
+                                    <td><t t-esc="line.subtotal"/></td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                    <p><strong>Valor Total:</strong> <t t-esc="doc.value"/></p>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>
