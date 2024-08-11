@@ -29,7 +29,7 @@ class WorkOrderProduct(models.Model):
     work_order_id = fields.Many2one('work.order', string="Orden de Trabajo", required=True)
     product_id = fields.Many2one('product.product', string="Producto", required=True)
     quantity = fields.Float(string="Cantidad", required=True)
-    price_unit = fields.Monetary(string="Precio Unitario", related='product_id.list_price', readonly=True, currency_field='currency_id')
+    price_unit = fields.Float(string="Precio Unitario", related='product_id.list_price', readonly=True)
     subtotal = fields.Monetary(string="Subtotal", compute="_compute_subtotal", store=True, currency_field='currency_id')
     currency_id = fields.Many2one('res.currency', string='Moneda')
 
