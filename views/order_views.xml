@@ -4,10 +4,6 @@
         <field name="model">work.order</field>
         <field name="arch" type="xml">
             <form>
-              <header>
-                    <!-- Botón de impresión del reporte -->
-                    <button name="%(my_order_module.action_report_work_order)d" string="Imprimir Orden" type="action" class="btn-primary"/>
-              </header>
                 <sheet>
                     <group>
                         <field name="title"/>
