@@ -1,2 +1,9 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_work_order,access.work.order,model_work_order,base.group_user,1,1,1,1
+access_work_order_user,access.work.order.user,model_work_order,base.group_user,1,1,1,1
+access_work_order_product_user,access.work.order.product.user,model_work_order_product,base.group_user,1,1,1,1
+access_work_order_payment_user,access.work.order.payment.user,model_work_order_payment,base.group_user,1,1,1,1
+access_work_order_image_user,access.work.order.image.user,model_work_order_image,base.group_user,1,1,1,1
+access_work_order_manager,access.work.order.manager,model_work_order,base.group_system,1,1,1,1
+access_work_order_product_manager,access.work.order.product.manager,model_work_order_product,base.group_system,1,1,1,1
+access_work_order_payment_manager,access.work.order.payment.manager,model_work_order_payment,base.group_system,1,1,1,1
+access_work_order_image_manager,access.work.order.image.manager,model_work_order_image,base.group_system,1,1,1,1
