@@ -21,6 +21,14 @@ class WorkOrder(models.Model):
     image_ids = fields.One2many('work.order.image', 'work_order_id', string="Imágenes")
     sale_order_id = fields.Many2one('sale.order', string="Pedido de Ventas", tracking=True)
 
+    state = fields.Selection([
+            ('draft', 'Borrador'),
+            ('in_progress', 'En Progreso'),
+            ('done', 'Terminado'),
+            ('cancel', 'Cancelado'),
+        ], string="Estado", default='draft', tracking=True)
+
+
 
     @api.depends('product_ids')
     def _compute_value(self):
@@ -38,6 +46,16 @@ class WorkOrder(models.Model):
         if vals.get('order_number', 'New') == 'New':
             vals['order_number'] = self.env['ir.sequence'].next_by_code('work.order.sequence') or 'New'
         return super(WorkOrder, self).create(vals)
+    
+    # Método para cambiar el estado
+    def action_set_in_progress(self):
+        self.state = 'in_progress'
+
+    def action_set_done(self):
+        self.state = 'done'
+
+    def action_set_cancel(self):
+        self.state = 'cancel'
 
 
 

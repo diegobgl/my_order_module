@@ -59,6 +59,71 @@
         </field>
     </record>
 
+        <record id="view_work_order_kanban" model="ir.ui.view">
+        <field name="name">work.order.kanban</field>
+        <field name="model">work.order</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_example">
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_card oe_kanban_global_click o_kanban_record {{record.state.raw_value}}">
+                            <div class="o_kanban_image">
+                                <img t-if="record.image_ids" t-att-src="kanban_image('work.order.image', 'image', record.image_ids.raw_value[0])" class="img img-fluid"/>
+                            </div>
+                            <div class="oe_kanban_content">
+                                <div>
+                                    <strong><field name="order_number"/></strong> - <field name="title"/>
+                                </div>
+                                <div class="o_kanban_details">
+                                    <span><field name="client_id"/></span>
+                                    <span class="oe_kanban_state"><field name="state"/></span>
+                                    <progressbar value="{
+                                        'draft': 0,
+                                        'in_progress': 50,
+                                        'done': 100,
+                                        'cancel': 0
+                                    }[record.state.raw_value]"/>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+
+        <record id="view_work_order_payment_kanban" model="ir.ui.view">
+        <field name="name">work.order.payment.kanban</field>
+        <field name="model">work.order.payment</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_example">
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_card oe_kanban_global_click o_kanban_record {{record.state.raw_value}}">
+                            <div class="oe_kanban_content">
+                                <div>
+                                    <strong><field name="name"/></strong> - <field name="worker_id"/>
+                                </div>
+                                <div class="o_kanban_details">
+                                    <span>Fecha Inicio: <field name="start_date"/></span>
+                                    <span>Fecha Fin: <field name="end_date"/></span>
+                                    <span class="oe_kanban_state"><field name="is_paid" widget="boolean_toggle" options="{'attrs': {'readonly': False}}"/></span>
+                                    <progressbar value="{
+                                        'draft': 0,
+                                        'paid': 100
+                                    }[record.is_paid.raw_value]"/>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+
+
     <record id="view_work_order_tree" model="ir.ui.view">
         <field name="name">work.order.tree</field>
         <field name="model">work.order</field>
@@ -126,13 +191,13 @@
     <record id="action_work_order" model="ir.actions.act_window">
         <field name="name">Ordenes de Trabajo</field>
         <field name="res_model">work.order</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">tree,form,kanban</field>
     </record>
 
     <record id="action_work_order_payment" model="ir.actions.act_window">
         <field name="name">Pagos de Órdenes</field>
         <field name="res_model">work.order.payment</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">tree,form,kanban</field>
     </record>
 
     <menuitem id="menu_work_order_root" name="Ordenes de Trabajo" sequence="1"/>
