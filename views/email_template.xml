@@ -1,0 +1,23 @@
+<odoo>
+    <record id="email_template_work_order" model="mail.template">
+        <field name="name">Orden de Trabajo</field>
+        <field name="model_id" ref="model_work_order"/>
+        <field name="subject">Orden de Trabajo: ${object.order_number}</field>
+        <field name="email_from">${(user.email or 'noreply@yourdomain.com')}</field>
+        <field name="email_to">${object.client_id.email}</field>
+        <field name="body_html">
+            <![CDATA[
+                <p>Estimado ${object.client_id.name},</p>
+                <p>Adjunto la orden de trabajo: ${object.order_number}.</p>
+                <p>Detalles:</p>
+                <ul>
+                    <li>Cliente: ${object.client_id.name}</li>
+                    <li>Fecha: ${object.date}</li>
+                    <li>Valor Total: ${object.value}</li>
+                </ul>
+                <p>Saludos cordiales,</p>
+                <p>${user.name}</p>
+            ]]>
+        </field>
+    </record>
+</odoo>

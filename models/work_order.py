@@ -7,7 +7,7 @@ class WorkOrder(models.Model):
 
 
     title = fields.Char(string="Título", required=True)
-    order_number = fields.Char(string="Número de Orden", required=True)
+    order_number = fields.Char(string="Número de Orden", readonly=True, copy=False, default='New')
     value = fields.Monetary(string="Valor de la Orden", compute="_compute_value", store=True, currency_field='currency_id')
     client_id = fields.Many2one('res.partner', string="Cliente", required=True)
     worker_id = fields.Many2one('hr.employee', string="Trabajador")
@@ -19,6 +19,7 @@ class WorkOrder(models.Model):
     time_block = fields.Char(string="Bloque Horario")
 
     image_ids = fields.One2many('work.order.image', 'work_order_id', string="Imágenes")
+    sale_order_id = fields.Many2one('sale.order', string="Pedido de Ventas", tracking=True)
 
 
     @api.depends('product_ids')
@@ -26,10 +27,28 @@ class WorkOrder(models.Model):
         for order in self:
             order.value = sum(product.subtotal for product in order.product_ids)
 
+    # Método para enviar la orden por correo
+    def action_send_order_by_email(self):
+        template_id = self.env.ref('my_order_module.email_template_work_order').id
+        self.env['mail.template'].browse(template_id).send_mail(self.id, force_send=True)
+
+    # Método para generar el número de orden automáticamente
+    @api.model
+    def create(self, vals):
+        if vals.get('order_number', 'New') == 'New':
+            vals['order_number'] = self.env['ir.sequence'].next_by_code('work.order.sequence') or 'New'
+        return super(WorkOrder, self).create(vals)
+
+
+
+
+
 
 class WorkOrderProduct(models.Model):
     _name = 'work.order.product'
     _description = 'Producto de Orden de Trabajo'
+    _inherit = ['mail.thread', 'mail.activity.mixin']  # Habilita el chatter
+
 
     work_order_id = fields.Many2one('work.order', string="Orden de Trabajo", required=True)
     product_id = fields.Many2one('product.product', string="Producto", required=True)
@@ -47,6 +66,8 @@ class WorkOrderProduct(models.Model):
 class WorkOrderPayment(models.Model):
     _name = 'work.order.payment'
     _description = 'Pago de Orden de Trabajo'
+    _inherit = ['mail.thread', 'mail.activity.mixin']  # Habilita el chatter
+
 
     name = fields.Char(string="Referencia", required=True, copy=False, readonly=True, default=lambda self: _('New'))
     worker_id = fields.Many2one('hr.employee', string="Trabajador", required=True)
