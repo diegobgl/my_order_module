@@ -3,6 +3,8 @@ from odoo import models, fields, api, _
 class WorkOrder(models.Model):
     _name = 'work.order'
     _description = 'Orden de Trabajo'
+    _inherit = ['mail.thread', 'mail.activity.mixin']  # Habilita el chatter
+
 
     title = fields.Char(string="Título", required=True)
     order_number = fields.Char(string="Número de Orden", required=True)
@@ -15,6 +17,9 @@ class WorkOrder(models.Model):
     address = fields.Char(string="Dirección")
     city = fields.Char(string="Ciudad")
     time_block = fields.Char(string="Bloque Horario")
+
+    image_ids = fields.One2many('work.order.image', 'work_order_id', string="Imágenes")
+
 
     @api.depends('product_ids')
     def _compute_value(self):

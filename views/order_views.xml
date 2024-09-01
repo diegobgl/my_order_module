@@ -6,15 +6,19 @@
             <form>
                 <sheet>
                     <group>
-                        <field name="title"/>
-                        <field name="order_number"/>
-                        <field name="client_id"/>
-                        <field name="worker_id"/>
-                        <field name="date"/>
-                        <field name="address"/>
-                        <field name="city"/>
-                        <field name="time_block"/>
-                        <field name="value" widget="monetary" options="{'currency_field': 'currency_id'}" readonly="1"/>
+                        <group>
+                            <field name="title"/>
+                            <field name="order_number"/>
+                            <field name="client_id"/>
+                            <field name="worker_id"/>
+                        </group>
+                        <group>
+                            <field name="date"/>
+                            <field name="address"/>
+                            <field name="city"/>
+                            <field name="time_block"/>
+                            <field name="value" widget="monetary" options="{'currency_field': 'currency_id'}" readonly="1"/>
+                        </group>
                     </group>
                     <notebook>
                         <page string="Productos">
@@ -27,8 +31,29 @@
                                 </tree>
                             </field>
                         </page>
+                        <page string="Imágenes">
+                            <field name="image_ids">
+                                <tree editable="bottom">
+                                    <field name="image" widget="image" class="oe_avatar"/>
+                                    <field name="description"/>
+                                </tree>
+                                <form>
+                                    <sheet>
+                                        <group>
+                                            <field name="image" widget="image"/>
+                                            <field name="description"/>
+                                        </group>
+                                    </sheet>
+                                </form>
+                            </field>
+                        </page>
                     </notebook>
                 </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
             </form>
         </field>
     </record>
