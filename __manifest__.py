@@ -16,8 +16,8 @@
         'report/order_report.xml',
         'report/work_order_payment_report_template.xml',
         'report/work_order_payment_report.xml',
+        'security/ir.model.access.csv',
         'views/order_views.xml',
-        'security/ir.model.access.csv'
     ],
     'installable': True,
     'application': True,
