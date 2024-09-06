@@ -96,16 +96,10 @@
                         </div>
                     </t>
                 </templates>
-
-                <grouped>
-                    <group string="Borrador" states="draft"/>
-                    <group string="En Progreso" states="in_progress"/>
-                    <group string="Terminado" states="done"/>
-                    <group string="Cancelado" states="cancel"/>
-                </grouped>
             </kanban>
         </field>
     </record>
+
  
 
 
