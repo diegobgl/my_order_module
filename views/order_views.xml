@@ -15,8 +15,8 @@
                         </group>
                         <group>
                             <field name="date"/>
-                            <field name="address"/>
-                            <field name="city"/>
+                            <field name="address" readonly="1"/>
+                            <field name="city" readonly="1"/>
                             <field name="time_block"/>
                             <field name="value" widget="monetary" options="{'currency_field': 'currency_id'}" readonly="1"/>
                         </group>

@@ -28,6 +28,11 @@ class WorkOrder(models.Model):
             ('cancel', 'Cancelado'),
         ], string="Estado", default='draft', tracking=True)
 
+    @api.onchange('client_id')
+    def _onchange_client_id(self):
+        if self.client_id:
+            self.address = self.client_id.street or ''
+            self.city = self.client_id.city or ''
 
 
     @api.depends('product_ids')
