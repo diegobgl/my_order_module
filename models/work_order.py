@@ -5,7 +5,6 @@ class WorkOrder(models.Model):
     _description = 'Orden de Trabajo'
     _inherit = ['mail.thread', 'mail.activity.mixin']  # Habilita el chatter
 
-
     title = fields.Char(string="Título", required=True)
     order_number = fields.Char(string="Número de Orden", readonly=True, copy=False, default='New')
     value = fields.Monetary(string="Valor de la Orden", compute="_compute_value", store=True, currency_field='currency_id')
@@ -14,21 +13,17 @@ class WorkOrder(models.Model):
     product_ids = fields.One2many('work.order.product', 'work_order_id', string="Productos")
     currency_id = fields.Many2one('res.currency', string='Moneda')
     date = fields.Date(string="Fecha")
-    address = fields.Char(string="Dirección", related='client_id.street', readonly=False)
-    city = fields.Char(string="Ciudad", related='client_id.city', readonly=False)
+    address = fields.Char(string="Dirección", related='client_id.street', readonly=False, store=True)
+    city = fields.Char(string="Ciudad", related='client_id.city', readonly=False, store=True)
     time_block = fields.Char(string="Bloque Horario")
-
     image_ids = fields.One2many('work.order.image', 'work_order_id', string="Imágenes")
     sale_order_id = fields.Many2one('sale.order', string="Pedido de Ventas", tracking=True)
-
     state = fields.Selection([
             ('draft', 'Borrador'),
             ('in_progress', 'En Progreso'),
             ('done', 'Terminado'),
             ('cancel', 'Cancelado'),
         ], string="Estado", default='draft', tracking=True)
-
-
 
     @api.depends('product_ids')
     def _compute_value(self):
@@ -56,9 +51,6 @@ class WorkOrder(models.Model):
 
     def action_set_cancel(self):
         self.state = 'cancel'
-
-
-
 
 
 
