@@ -42,16 +42,6 @@ class WorkOrder(models.Model):
             vals['order_number'] = self.env['ir.sequence'].next_by_code('work.order.sequence') or 'New'
         return super(WorkOrder, self).create(vals)
     
-    # Método para cambiar el estado
-    def action_set_in_progress(self):
-        self.state = 'in_progress'
-
-    def action_set_done(self):
-        self.state = 'done'
-
-    def action_set_cancel(self):
-        self.state = 'cancel'
-
 
 
 class WorkOrderProduct(models.Model):

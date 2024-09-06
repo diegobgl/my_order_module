@@ -63,32 +63,49 @@
         <field name="name">work.order.kanban</field>
         <field name="model">work.order</field>
         <field name="arch" type="xml">
-            <kanban>
+            <kanban default_group_by="state">
+                <field name="title"/>
+                <field name="order_number"/>
+                <field name="client_id"/>
+                <field name="worker_id"/>
+                <field name="value"/>
+                <field name="date"/>
+                <field name="state"/>
+
                 <templates>
                     <t t-name="kanban-box">
-                        <div class="oe_kanban_card oe_kanban_global_click">
-                            <div class="o_kanban_image">
-                                <!-- Mostrar la primera imagen si existe -->
-                                <img t-if="record.image_ids" 
-                                     t-att-src="kanban_image('work.order.image', 'image', record.image_ids.raw_value[0])" 
-                                     class="img img-fluid"/>
-                            </div>
-                            <div class="oe_kanban_content">
+                        <div class="oe_kanban_global_click">
+                            <div class="oe_kanban_details">
+                                <strong><field name="title"/></strong>
                                 <div>
-                                    <strong><field name="order_number"/></strong> - <field name="title"/>
+                                    <field name="order_number"/>
                                 </div>
-                                <div class="o_kanban_details">
-                                    <span>Cliente: <field name="client_id"/></span><br/>
-                                    <span>Estado: <field name="state"/></span>
+                                <div>
+                                    <field name="client_id"/>
+                                </div>
+                                <div>
+                                    <field name="worker_id"/>
+                                </div>
+                                <div>
+                                    <field name="value" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                </div>
+                                <div>
+                                    <field name="date"/>
                                 </div>
                             </div>
                         </div>
                     </t>
                 </templates>
+
+                <grouped>
+                    <group string="Borrador" states="draft"/>
+                    <group string="En Progreso" states="in_progress"/>
+                    <group string="Terminado" states="done"/>
+                    <group string="Cancelado" states="cancel"/>
+                </grouped>
             </kanban>
         </field>
     </record>
-
  
 
 
