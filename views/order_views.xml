@@ -109,10 +109,6 @@
                                     <span>Fecha Inicio: <field name="start_date"/></span><br/>
                                     <span>Fecha Fin: <field name="end_date"/></span>
                                 </div>
-                                <div class="o_kanban_state">
-                                    <span t-if="record.is_paid.raw_value" class="badge badge-success">Pagado</span>
-                                    <span t-if="!record.is_paid.raw_value" class="badge badge-warning">No Pagado</span>
-                                </div>
                             </div>
                         </div>
                     </t>
