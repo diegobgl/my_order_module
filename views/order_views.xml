@@ -9,7 +9,7 @@
                         <group>
                             <field name="title"/>
                             <field name="order_number"/>
-                            <field name="sale_order_id" options="{'no_create': True}" domain="[('state', '=', 'sale')]"/>
+                            <field name="sale_order_id" options="{'no_create': True}"/>
                             <field name="client_id"/>
                             <field name="worker_id"/>
                         </group>
