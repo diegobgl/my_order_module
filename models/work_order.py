@@ -31,8 +31,12 @@ class WorkOrder(models.Model):
     @api.onchange('client_id')
     def _onchange_client_id(self):
         if self.client_id:
-            self.address = self.client_id.street or ''
-            self.city = self.client_id.city or ''
+            # Verificar si los atributos existen para evitar errores
+            self.address = self.client_id.street if self.client_id.street else ''
+            self.city = self.client_id.city if self.client_id.city else ''
+        else:
+            self.address = ''
+            self.city = ''
 
 
     @api.depends('product_ids')
