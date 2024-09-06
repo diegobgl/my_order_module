@@ -14,8 +14,8 @@ class WorkOrder(models.Model):
     product_ids = fields.One2many('work.order.product', 'work_order_id', string="Productos")
     currency_id = fields.Many2one('res.currency', string='Moneda')
     date = fields.Date(string="Fecha")
-    address = fields.Char(string="Dirección")
-    city = fields.Char(string="Ciudad")
+    address = fields.Char(string="Dirección", related='client_id.street', readonly=False)
+    city = fields.Char(string="Ciudad", related='client_id.city', readonly=False)
     time_block = fields.Char(string="Bloque Horario")
 
     image_ids = fields.One2many('work.order.image', 'work_order_id', string="Imágenes")
@@ -28,15 +28,6 @@ class WorkOrder(models.Model):
             ('cancel', 'Cancelado'),
         ], string="Estado", default='draft', tracking=True)
 
-    @api.onchange('client_id')
-    def _onchange_client_id(self):
-        if self.client_id:
-            # Verificar si los atributos existen para evitar errores
-            self.address = self.client_id.street if self.client_id.street else ''
-            self.city = self.client_id.city if self.client_id.city else ''
-        else:
-            self.address = ''
-            self.city = ''
 
 
     @api.depends('product_ids')
