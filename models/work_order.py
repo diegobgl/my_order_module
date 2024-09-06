@@ -23,7 +23,7 @@ class WorkOrder(models.Model):
             ('in_progress', 'En Progreso'),
             ('done', 'Terminado'),
             ('cancel', 'Cancelado'),
-        ], string="Estado", default='draft', tracking=True)
+        ], string="Estado", default='draft')
 
     @api.depends('product_ids')
     def _compute_value(self):
