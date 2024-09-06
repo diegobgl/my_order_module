@@ -87,9 +87,6 @@
                                     <field name="worker_id"/>
                                 </div>
                                 <div>
-                                    <field name="value" widget="monetary" options="{'currency_field': 'currency_id'}"/>
-                                </div>
-                                <div>
                                     <field name="date"/>
                                 </div>
                             </div>

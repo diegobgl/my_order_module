@@ -17,7 +17,7 @@ class WorkOrder(models.Model):
     city = fields.Char(string="Ciudad", related='client_id.city')
     time_block = fields.Char(string="Bloque Horario")
     image_ids = fields.One2many('work.order.image', 'work_order_id', string="Imágenes")
-    sale_order_id = fields.Many2one('sale.order', string="Pedido de Ventas", tracking=True)
+    sale_order_id = fields.Many2one('sale.order', string="Pedido de Ventas")
     state = fields.Selection([
             ('draft', 'Borrador'),
             ('in_progress', 'En Progreso'),
