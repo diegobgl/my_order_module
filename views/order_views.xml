@@ -94,7 +94,7 @@
                             
                         </div>
                         <div class="o_kanban_tags">
-                            <span t-field="record.state" t-options='{"widget": "badge", "colors": {"draft": "gray", "in_progress": "blue", "done": "green", "cancelled": "red"}}'/>
+                            <field name="state" widget="badge" options="{'colors': {'draft': 'gray', 'in_progress': 'blue', 'done': 'green', 'cancelled': 'red'}}"/>
                         </div>
                     </t>
                 </templates>
