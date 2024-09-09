@@ -7,7 +7,6 @@
                 <sheet>
                     <group>
                         <group>
-                            <field name="state" widget="statusbar" options="{'clickable': True}"/>
                             <field name="title"/>
                             <field name="order_number"/>
                             <field name="sale_order_id" options="{'no_create': True}"/>
