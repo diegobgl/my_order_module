@@ -75,26 +75,17 @@
 
                 <templates>
                     <t t-name="kanban-box">
-                        <div class="oe_kanban_global_click">
-                            <div class="oe_kanban_details">
-                                <strong><field name="title"/></strong>
-                                <div>
-                                    <field name="order_number"/>
-                                </div>
-                                <div>
-                                    <field name="client_id"/>
-                                </div>
-                                <div>
-                                    <field name="worker_id"/>
-                                </div>
-                                <div>
-                                    <field name="date"/>
-                                </div>
+                        <div class="oe_kanban_card oe_kanban_global_click">
+                            <div class="o_kanban_tags">
+                                <field name="state" widget="badge" options="{'colors': {'draft': 'gray', 'in_progress': 'blue', 'done': 'green', 'cancelled': 'red'}}"/>
                             </div>
-                            
-                        </div>
-                        <div class="o_kanban_tags">
-                            <field name="state" widget="badge" options="{'colors': {'draft': 'gray', 'in_progress': 'blue', 'done': 'green', 'cancelled': 'red'}}"/>
+                            <div>
+                                <strong><field name="order_number"/></strong>
+                                <br/>
+                                <span t-esc="record.client_id.value"/>
+                                <br/>
+                                <span t-esc="record.date.value"/>
+                            </div>
                         </div>
                     </t>
                 </templates>
