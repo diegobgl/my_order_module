@@ -63,29 +63,21 @@
         <field name="name">work.order.kanban</field>
         <field name="model">work.order</field>
         <field name="arch" type="xml">
-            <kanban default_group_by="state" class="o_kanban_small_column">
+            <kanban class="o_kanban_small_column">
                 <field name="title"/>
                 <field name="client_id"/>
                 <field name="worker_id"/>
                 <field name="date"/>
-                <field name="state"/>
                 <templates>
                     <t t-name="kanban-box">
                         <div t-attf-class="oe_kanban_global_click o_kanban_record #{kanban_color}">
-                            <div class="o_kanban_image">
-                                <span class="o_badge o_badge_color_0">
-                                    <t t-if="record.state">
-                                        <t t-esc="record.state.value"/>
-                                    </t>
-                                    <t t-else="">
-                                        <t t-esc="''"/>
-                                    </t>
-                                </span>
-                            </div>
                             <div class="o_kanban_details">
                                 <strong><t t-esc="record.title.value"/></strong>
                                 <div t-if="record.client_id">
                                     <span><t t-esc="record.client_id.display_name"/></span>
+                                </div>
+                                <div t-if="record.worker_id">
+                                    <span>Trabajador: <t t-esc="record.worker_id.name"/></span>
                                 </div>
                                 <div t-if="record.date">
                                     <small><t t-esc="record.date.value"/></small>
