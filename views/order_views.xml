@@ -63,33 +63,33 @@
         <field name="name">work.order.kanban</field>
         <field name="model">work.order</field>
         <field name="arch" type="xml">
-            <kanban default_group_by="state">
-                <field name="title"/>
-                <field name="order_number"/>
-                <field name="client_id"/>
-                <field name="worker_id"/>
-                <field name="value"/>
-                <field name="date"/>
-                <field name="state"/>
-
-                <templates>
-                    <t t-name="kanban-box">
-                        <div class="oe_kanban_card oe_kanban_global_click">
-                            <div class="o_kanban_tags">
-                                <field name="state" widget="badge" options="{'colors': {'draft': 'gray', 'in_progress': 'blue', 'done': 'green', 'cancelled': 'red'}}"/>
+        </field>
+         <kanban default_group_by="state" class="o_kanban_small_column">
+            <field name="title"/>
+            <field name="client_id"/>
+            <field name="worker_id"/>
+            <field name="date"/>
+            <field name="state"/>
+            <templates>
+                <t t-name="kanban-box">
+                    <div t-attf-class="oe_kanban_global_click o_kanban_record #{kanban_color}">
+                        <div class="o_kanban_image">
+                            <span class="o_badge o_badge_color_0" t-field="record.state"/>
+                        </div>
+                        <div class="o_kanban_details">
+                            <strong t-field="record.title"/>
+                            <div t-if="record.client_id">
+                                <span t-esc="record.client_id"/>
                             </div>
-                            <div>
-                                <strong><field name="order_number"/></strong>
-                                <br/>
-                                <span t-esc="record.client_id.value"/>
-                                <br/>
-                                <span t-esc="record.date.value"/>
+                            <div t-if="record.date">
+                                <small><t t-esc="record.date"/></small>
                             </div>
                         </div>
-                    </t>
-                </templates>
-            </kanban>
-        </field>
+                    </div>
+                </t>
+            </templates>
+        </kanban>
+
     </record>
 
  
