@@ -74,7 +74,12 @@
                         <div t-attf-class="oe_kanban_global_click o_kanban_record #{kanban_color}">
                             <div class="o_kanban_image">
                                 <span class="o_badge o_badge_color_0">
-                                    <t t-esc="record.state.value if record.state else ''"/>
+                                    <t t-if="record.state">
+                                        <t t-esc="record.state.value"/>
+                                    </t>
+                                    <t t-else="">
+                                        <t t-esc="''"/>
+                                    </t>
                                 </span>
                             </div>
                             <div class="o_kanban_details">
