@@ -16,7 +16,7 @@
                         <group>
                             <field name="date"/>
                             <field name="address"/>
-                            <field name="city" />
+                            <field name="city"/>
                             <field name="time_block"/>
                             <field name="value" widget="monetary" options="{'currency_field': 'currency_id'}" readonly="1"/>
                         </group>
@@ -63,37 +63,33 @@
         <field name="name">work.order.kanban</field>
         <field name="model">work.order</field>
         <field name="arch" type="xml">
+            <kanban default_group_by="state" class="o_kanban_small_column">
+                <field name="title"/>
+                <field name="client_id"/>
+                <field name="worker_id"/>
+                <field name="date"/>
+                <field name="state"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_global_click o_kanban_record #{kanban_color}">
+                            <div class="o_kanban_image">
+                                <span class="o_badge o_badge_color_0" t-field="record.state"/>
+                            </div>
+                            <div class="o_kanban_details">
+                                <strong t-field="record.title"/>
+                                <div t-if="record.client_id">
+                                    <span t-esc="record.client_id"/>
+                                </div>
+                                <div t-if="record.date">
+                                    <small><t t-esc="record.date"/></small>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
         </field>
-         <kanban default_group_by="state" class="o_kanban_small_column">
-            <field name="title"/>
-            <field name="client_id"/>
-            <field name="worker_id"/>
-            <field name="date"/>
-            <field name="state"/>
-            <templates>
-                <t t-name="kanban-box">
-                    <div t-attf-class="oe_kanban_global_click o_kanban_record #{kanban_color}">
-                        <div class="o_kanban_image">
-                            <span class="o_badge o_badge_color_0" t-field="record.state"/>
-                        </div>
-                        <div class="o_kanban_details">
-                            <strong t-field="record.title"/>
-                            <div t-if="record.client_id">
-                                <span t-esc="record.client_id"/>
-                            </div>
-                            <div t-if="record.date">
-                                <small><t t-esc="record.date"/></small>
-                            </div>
-                        </div>
-                    </div>
-                </t>
-            </templates>
-        </kanban>
-
     </record>
-
- 
-
 
     <record id="view_work_order_payment_kanban" model="ir.ui.view">
         <field name="name">work.order.payment.kanban</field>
@@ -119,9 +115,6 @@
             </kanban>
         </field>
     </record>
-
-
-
 
     <record id="view_work_order_tree" model="ir.ui.view">
         <field name="name">work.order.tree</field>
@@ -163,10 +156,10 @@
                         </field>
                     </group>
                 </sheet>
-                    <div class="oe_chatter">
-                        <field name="message_follower_ids" widget="mail_followers"/>
-                        <field name="activity_ids" widget="mail_activity"/>
-                        <field name="message_ids" widget="mail_thread"/>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
                 </div>
             </form>
         </field>
