@@ -4,6 +4,13 @@
         <field name="model">work.order</field>
         <field name="arch" type="xml">
             <form>
+             <header>
+                <!-- Agregamos el statusbar para mostrar el estado de la orden -->
+                <field name="state" widget="statusbar" statusbar_visible="draft,in_progress,done,cancel"/>
+                <button name="action_confirm" type="object" string="Confirmar" states="draft" class="oe_highlight"/>
+                <button name="action_cancel" type="object" string="Cancelar" states="draft,in_progress"/>
+                <button name="action_done" type="object" string="Marcar como Terminado" states="in_progress" class="oe_highlight"/>
+             </header>
                 <sheet>
                     <group>
                         <group>
