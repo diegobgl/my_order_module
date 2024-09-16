@@ -95,3 +95,14 @@ class WorkOrderPayment(models.Model):
                 ('date', '>=', self.start_date),
                 ('date', '<=', self.end_date),
             ])
+
+
+    # Métodos para cambiar el estado
+    def action_start(self):
+        self.state = 'in_progress'
+
+    def action_done(self):
+        self.state = 'done'
+
+    def action_cancel(self):
+        self.state = 'cancel'
