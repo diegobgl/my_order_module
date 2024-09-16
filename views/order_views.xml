@@ -5,13 +5,14 @@
         <field name="arch" type="xml">
             <form>
                     <field name="state" widget="statusbar" statusbar_visible="draft,in_progress,done,cancel"/>
+                <sheet>
                     <button name="action_start" type="object" string="Iniciar" 
                             class="btn-primary" states="draft"/>
                     <button name="action_done" type="object" string="Terminar" 
                             class="btn-success" states="in_progress"/>
                     <button name="action_cancel" type="object" string="Cancelar" 
                             class="btn-danger" states="draft,in_progress"/>
-                <sheet>
+
                     <group>
                         <group>
                             <field name="title"/>
