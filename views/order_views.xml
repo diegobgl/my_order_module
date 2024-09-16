@@ -5,15 +5,16 @@
         <field name="arch" type="xml">
             <form>
                 <header>
+                    <!-- Botones ajustados con attrs para manejar la visibilidad según el estado -->
                     <button name="action_start" type="object" string="Iniciar" 
-                            class="btn-primary" confirm="¿Estás seguro de que deseas iniciar esta orden?"
-                            t-if="record.state == 'draft'"/>
+                            class="btn-primary" confirm="¿Estás seguro de que deseas iniciar esta orden?" 
+                            attrs="{'invisible': [('state', '!=', 'draft')]}"/>
                     <button name="action_done" type="object" string="Terminar" 
-                            class="btn-success" confirm="¿Estás seguro de que deseas marcar esta orden como terminada?"
-                            t-if="record.state == 'in_progress'"/>
+                            class="btn-success" confirm="¿Estás seguro de que deseas marcar esta orden como terminada?" 
+                            attrs="{'invisible': [('state', '!=', 'in_progress')]}"/>
                     <button name="action_cancel" type="object" string="Cancelar" 
-                            class="btn-danger" confirm="¿Estás seguro de que deseas cancelar esta orden?"
-                            t-if="record.state in ['draft', 'in_progress']"/>
+                            class="btn-danger" confirm="¿Estás seguro de que deseas cancelar esta orden?" 
+                            attrs="{'invisible': [('state', 'in', ['done', 'cancel'])]}"/>
                     <field name="state" widget="statusbar" statusbar_visible="draft,in_progress,done,cancel"/>
                 </header>
                 <sheet>
