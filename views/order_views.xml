@@ -82,16 +82,23 @@
                 <field name="client_id"/>
                 <field name="worker_id"/>
                 <field name="date"/>
+                <field name="state"/>
                 <templates>
                     <t t-name="kanban-box">
                         <div t-attf-class="oe_kanban_global_click o_kanban_record #{kanban_color}">
+                            <!-- Indicador visual del estado -->
+                            <div class="o_kanban_badge" t-if="record.state.raw_value == 'draft'" style="background-color: #FFC107;">Borrador</div>
+                            <div class="o_kanban_badge" t-if="record.state.raw_value == 'in_progress'" style="background-color: #17A2B8;">En Progreso</div>
+                            <div class="o_kanban_badge" t-if="record.state.raw_value == 'done'" style="background-color: #28A745;">Terminado</div>
+                            <div class="o_kanban_badge" t-if="record.state.raw_value == 'cancel'" style="background-color: #DC3545;">Cancelado</div>
+                            
                             <div class="o_kanban_details">
                                 <strong><t t-esc="record.title.value"/></strong>
                                 <div t-if="record.client_id">
                                     <span><t t-esc="record.client_id.display_name"/></span>
                                 </div>
                                 <div t-if="record.worker_id">
-                                    <span>Trabajador: <t t-esc="record.worker_id.name"/></span>
+                                    <span>Trabajador: <t t-esc="record.worker_id.display_name"/></span>
                                 </div>
                                 <div t-if="record.date">
                                     <small><t t-esc="record.date.value"/></small>
