@@ -77,7 +77,7 @@
         <field name="name">work.order.kanban</field>
         <field name="model">work.order</field>
         <field name="arch" type="xml">
-            <kanban class="o_kanban_small_column">
+            <kanban default_group_by="state" class="o_kanban_small_column">
                 <field name="title"/>
                 <field name="client_id"/>
                 <field name="worker_id"/>
@@ -110,6 +110,7 @@
             </kanban>
         </field>
     </record>
+
 
 
     <record id="view_work_order_payment_kanban" model="ir.ui.view">
