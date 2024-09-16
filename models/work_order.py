@@ -52,8 +52,6 @@ class WorkOrderProduct(models.Model):
     quantity = fields.Float(string="Cantidad", required=True)
     price_unit = fields.Monetary(
         string="Precio Unitario", 
-        related='product_id.product_tmpl_id.list_price', 
-        readonly=True, 
         currency_field='currency_id'
     )
     subtotal = fields.Monetary(string="Subtotal", compute="_compute_subtotal", store=True, currency_field='currency_id')
