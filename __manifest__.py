@@ -12,11 +12,11 @@
     """,
     'depends': ['base', 'hr', 'product'],
     'data': [
-        'report/order_report_template.xml',
         'data/ir_sequence_data.xml',  
         'report/order_report.xml',
         'report/work_order_payment_report_template.xml',
         'report/work_order_payment_report.xml',
+        'report/order_report_template.xml',
         'security/ir.model.access.csv',
         'views/order_views.xml',
         'views/email_template.xml'
