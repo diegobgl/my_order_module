@@ -5,7 +5,7 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <button name="%(my_order_module.action_report_work_order)d" string="Imprimir Orden de Trabajo" type="action" class="btn-primary"/>
+                    <button name="%(action_report_work_order)d" string="Imprimir Orden de Trabajo" type="action" class="btn-primary"/>
                     <!-- Actualizamos los botones para controlar su visibilidad y estado usando condiciones de `readonly` e `invisible` -->
                     <button name="action_start" type="object" string="Iniciar" 
                             class="btn-primary" confirm="¿Estás seguro de que deseas iniciar esta orden?" 
