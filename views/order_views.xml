@@ -15,7 +15,7 @@
                     <button name="action_cancel" type="object" string="Cancelar" 
                             class="btn-danger" confirm="¿Estás seguro de que deseas cancelar esta orden?" 
                             attrs="{'invisible': [('state', 'in', ['done', 'cancel'])]}"/>
-                    <field name="state" widget="statusbar" statusbar_visible="draft,in_progress,done,cancel"/>
+                    <!--field name="state" widget="statusbar" statusbar_visible="draft,in_progress,done,cancel"/-->
                 </header>
                 <sheet>
                     <group>
