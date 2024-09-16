@@ -42,6 +42,18 @@ class WorkOrder(models.Model):
             vals['order_number'] = self.env['ir.sequence'].next_by_code('work.order.sequence') or 'New'
         return super(WorkOrder, self).create(vals)
 
+    # Métodos para cambiar el estado
+
+    def action_start(self):
+        self.state = 'in_progress'
+
+    def action_done(self):
+        self.state = 'done'
+
+    def action_cancel(self):
+        self.state = 'cancel'
+
+
 class WorkOrderProduct(models.Model):
     _name = 'work.order.product'
     _description = 'Producto de Orden de Trabajo'
@@ -62,15 +74,6 @@ class WorkOrderProduct(models.Model):
         for line in self:
             line.subtotal = line.quantity * line.price_unit
 
-        # Métodos para cambiar el estado
-    def action_start(self):
-        self.state = 'in_progress'
-
-    def action_done(self):
-        self.state = 'done'
-
-    def action_cancel(self):
-        self.state = 'cancel'
 
 class WorkOrderPayment(models.Model):
     _name = 'work.order.payment'
