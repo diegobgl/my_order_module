@@ -62,6 +62,16 @@ class WorkOrderProduct(models.Model):
         for line in self:
             line.subtotal = line.quantity * line.price_unit
 
+        # Métodos para cambiar el estado
+    def action_start(self):
+        self.state = 'in_progress'
+
+    def action_done(self):
+        self.state = 'done'
+
+    def action_cancel(self):
+        self.state = 'cancel'
+
 class WorkOrderPayment(models.Model):
     _name = 'work.order.payment'
     _description = 'Pago de Orden de Trabajo'
@@ -97,12 +107,4 @@ class WorkOrderPayment(models.Model):
             ])
 
 
-    # Métodos para cambiar el estado
-    def action_start(self):
-        self.state = 'in_progress'
 
-    def action_done(self):
-        self.state = 'done'
-
-    def action_cancel(self):
-        self.state = 'cancel'
