@@ -5,26 +5,26 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <!-- Botones ajustados con attrs para manejar la visibilidad según el estado -->
+                    <!-- Actualizamos los botones para controlar su visibilidad y estado usando condiciones de `readonly` e `invisible` -->
                     <button name="action_start" type="object" string="Iniciar" 
                             class="btn-primary" confirm="¿Estás seguro de que deseas iniciar esta orden?" 
-                            attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                            invisible="state != 'draft'"/>
                     <button name="action_done" type="object" string="Terminar" 
                             class="btn-success" confirm="¿Estás seguro de que deseas marcar esta orden como terminada?" 
-                            attrs="{'invisible': [('state', '!=', 'in_progress')]}"/>
+                            invisible="state != 'in_progress'"/>
                     <button name="action_cancel" type="object" string="Cancelar" 
                             class="btn-danger" confirm="¿Estás seguro de que deseas cancelar esta orden?" 
-                            attrs="{'invisible': [('state', 'in', ['done', 'cancel'])]}"/>
-                    <!--field name="state" widget="statusbar" statusbar_visible="draft,in_progress,done,cancel"/-->
+                            invisible="state in ['done', 'cancel']"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,in_progress,done,cancel"/>
                 </header>
                 <sheet>
                     <group>
                         <group>
-                            <field name="title"/>
+                            <field name="title" readonly="state not in ['draft']"/>
                             <field name="order_number" readonly="1"/>
-                            <field name="sale_order_id" options="{'no_create': True}"/>
-                            <field name="client_id"/>
-                            <field name="worker_id"/>
+                            <field name="sale_order_id" options="{'no_create': True}" readonly="state == 'done'"/>
+                            <field name="client_id" readonly="state != 'draft'"/>
+                            <field name="worker_id" readonly="state in ['done']"/>
                         </group>
                         <group>
                             <field name="date"/>
