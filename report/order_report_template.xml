@@ -23,22 +23,22 @@
                         <!-- Tabla de productos, ajustada al 100% del ancho -->
                         <div class="row mt32">
                             <h4>Productos</h4>
-                            <table class="table table-sm" style="width: 100%; text-align: left;">
+                            <table class="table table-sm" style="width: 100%; text-align: left; border: 1px solid #ddd;">
                                 <thead>
                                     <tr>
-                                        <th>Producto</th>
-                                        <th>Cantidad</th>
-                                        <th>Precio</th>
-                                        <th>Subtotal</th>
+                                        <th style="text-align: left;">Producto</th>
+                                        <th style="text-align: left;">Cantidad</th>
+                                        <th style="text-align: left;">Precio</th>
+                                        <th style="text-align: left;">Subtotal</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <t t-foreach="doc.product_ids" t-as="line">
                                         <tr>
-                                            <td><t t-esc="line.product_id.name or 'N/A'"/></td>
-                                            <td><t t-esc="line.quantity or 0"/></td>
-                                            <td><t t-esc="line.price_unit or 0.0"/></td>
-                                            <td><t t-esc="line.subtotal or 0.0"/></td>
+                                            <td style="text-align: left;"><t t-esc="line.product_id.name or 'N/A'"/></td>
+                                            <td style="text-align: left;"><t t-esc="line.quantity or 0"/></td>
+                                            <td style="text-align: left;"><t t-esc="line.price_unit or 0.0"/></td>
+                                            <td style="text-align: left;"><t t-esc="line.subtotal or 0.0"/></td>
                                         </tr>
                                     </t>
                                 </tbody>
@@ -55,32 +55,51 @@
                         <!-- Sección para imágenes adjuntas -->
                         <div class="row mt32">
                             <h4>Imágenes Adjuntas:</h4>
-                            <t t-foreach="doc.image_ids" t-as="image">
-                                <div class="col-3 image-section">
-                                    <!-- Solución al error de concatenación de bytes con str -->
-                                    <img t-att-src="'data:image/png;base64,' + image.image.decode('utf-8')" alt="Adjunto"/>
-                                </div>
-                            </t>
+                            <div class="image-gallery">
+                                <t t-foreach="doc.image_ids" t-as="image">
+                                    <div class="image-section">
+                                        <!-- Solución al error de concatenación de bytes con str -->
+                                        <img t-att-src="'data:image/png;base64,' + image.image.decode('utf-8')" alt="Adjunto" class="img-fluid"/>
+                                    </div>
+                                </t>
+                            </div>
                         </div>
 
                         <!-- Estilos mejorados para alinear el contenido a la izquierda -->
                         <style>
                             .page {
                                 text-align: left;
+                                margin: 0;
+                                padding: 0;
                             }
                             .image-section img {
                                 max-width: 200px;
                                 max-height: 200px;
                                 margin-bottom: 10px;
+                                display: block;
+                                object-fit: cover;
+                            }
+                            .image-gallery {
+                                display: flex;
+                                flex-wrap: wrap;
+                                gap: 10px;
                             }
                             table {
                                 border-collapse: collapse;
                                 width: 100%;
+                                margin-left: 0px; /* Asegurarse de que la tabla esté alineada a la izquierda */
                             }
                             th, td {
                                 padding: 8px;
                                 text-align: left;
-                                border-bottom: 1px solid #ddd;
+                                border: 1px solid #ddd;
+                                margin-left: 0px; /* Asegurarse de que el texto dentro de las celdas esté alineado a la izquierda */
+                            }
+                            .col-12 {
+                                width: 100%;
+                            }
+                            .row {
+                                width: 100%;
                             }
                         </style>
                     </div>
