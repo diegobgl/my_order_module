@@ -3,6 +3,7 @@
     <template id="order_report_template">
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
                 <t t-set="company" t-value="doc.client_id"/>
                 <div class="page">
                     <div class="row">
@@ -41,6 +42,17 @@
                         <div class="col-12 text-right">
                             <h3>Total: <t t-esc="doc.value"/></h3>
                         </div>
+                        <t t-foreach="doc.image_ids" t-as="image">
+                     <div class="image-section">
+                                <img t-att-src="'data:image/png;base64,' + image.datas" alt="Adjunto"/>
+                            </div>
+                        </t>
+                    <style>
+                            .image-section img {
+                                max-width: 200px;  <!-- Define el tamaño máximo de las imágenes -->
+                                max-height: 200px;
+                            }
+                    </style>
                     </div>
                 </div>
             </t>
