@@ -6,6 +6,7 @@ class WorkOrder(models.Model):
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
     # Campos definidos
+    company_id = fields.Many2one('res.company', string='Company', default=lambda self: self.env.company)
     title = fields.Char(string="Título", required=True)
     order_number = fields.Char(string="Número de Orden", readonly=True, copy=False, default='New')
     value = fields.Monetary(string="Valor de la Orden", compute="_compute_value", store=True, currency_field='currency_id')
