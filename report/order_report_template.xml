@@ -9,19 +9,21 @@
                     <div class="page">
                         <!-- Cabecera de la orden -->
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-12">
                                 <h2>Orden de Trabajo: <t t-esc="doc.title or 'Sin título'"/></h2>
                             </div>
-                            <div class="col-6 text-right">
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
                                 <h4>Fecha: <t t-esc="doc.date or ''"/></h4>
                                 <h4>Cliente: <t t-esc="doc.client_id.name or ''"/></h4>
                             </div>
                         </div>
 
-                        <!-- Tabla de productos -->
+                        <!-- Tabla de productos, ajustada al 100% del ancho -->
                         <div class="row mt32">
                             <h4>Productos</h4>
-                            <table class="table table-sm">
+                            <table class="table table-sm" style="width: 100%; text-align: left;">
                                 <thead>
                                     <tr>
                                         <th>Producto</th>
@@ -43,9 +45,9 @@
                             </table>
                         </div>
 
-                        <!-- Total de la orden -->
+                        <!-- Total de la orden, alineado a la izquierda -->
                         <div class="row mt32">
-                            <div class="col-12 text-right">
+                            <div class="col-12">
                                 <h3>Total: <t t-esc="doc.value or 0.0"/></h3>
                             </div>
                         </div>
@@ -61,12 +63,24 @@
                             </t>
                         </div>
 
-                        <!-- Estilos para las imágenes -->
+                        <!-- Estilos mejorados para alinear el contenido a la izquierda -->
                         <style>
+                            .page {
+                                text-align: left;
+                            }
                             .image-section img {
                                 max-width: 200px;
                                 max-height: 200px;
                                 margin-bottom: 10px;
+                            }
+                            table {
+                                border-collapse: collapse;
+                                width: 100%;
+                            }
+                            th, td {
+                                padding: 8px;
+                                text-align: left;
+                                border-bottom: 1px solid #ddd;
                             }
                         </style>
                     </div>
