@@ -62,42 +62,6 @@
                         </div>
 
                         <!-- Estilos para mejorar la presentación -->
-                        <style>
-                            .page {
-                                text-align: left;
-                                margin: 0 auto;
-                                padding: 20px;
-                                box-sizing: border-box;
-                            }
-                            .image-section img {
-                                max-width: 200px;
-                                max-height: 200px;
-                                margin-bottom: 10px;
-                                display: block;
-                            }
-                            .image-gallery {
-                                display: flex;
-                                flex-wrap: wrap;
-                                gap: 10px;
-                            }
-                            table {
-                                border-collapse: collapse;
-                                width: 100%;
-                                margin-left: 0;
-                                margin-right: 0;
-                            }
-                            th, td {
-                                padding: 8px;
-                                text-align: left;
-                                border: 1px solid #ddd;
-                            }
-                            .col-12 {
-                                width: 100%;
-                            }
-                            .row {
-                                width: 100%;
-                            }
-                        </style>
                     </div>
                 </t>
             </t>
