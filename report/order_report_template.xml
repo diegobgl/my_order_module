@@ -4,17 +4,21 @@
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="doc">
                 <t t-call="web.external_layout">
-                    <t t-set="company" t-value="doc.company_id"/>
+                    <!-- Verificación de `company_id` en el modelo -->
+                    <t t-set="company" t-value="doc.company_id or company"/>
                     <div class="page">
+                        <!-- Cabecera de la orden -->
                         <div class="row">
                             <div class="col-6">
-                                <h2>Orden de Trabajo: <t t-esc="doc.title"/></h2>
+                                <h2>Orden de Trabajo: <t t-esc="doc.title or 'Sin título'"/></h2>
                             </div>
                             <div class="col-6 text-right">
-                                <h4>Fecha: <t t-esc="doc.date"/></h4>
-                                <h4>Cliente: <t t-esc="doc.client_id.name"/></h4>
+                                <h4>Fecha: <t t-esc="doc.date or ''"/></h4>
+                                <h4>Cliente: <t t-esc="doc.client_id.name or ''"/></h4>
                             </div>
                         </div>
+
+                        <!-- Tabla de productos -->
                         <div class="row mt32">
                             <h4>Productos</h4>
                             <table class="table table-sm">
@@ -29,34 +33,40 @@
                                 <tbody>
                                     <t t-foreach="doc.product_ids" t-as="line">
                                         <tr>
-                                            <td><t t-esc="line.product_id.name"/></td>
-                                            <td><t t-esc="line.quantity"/></td>
-                                            <td><t t-esc="line.price_unit"/></td>
-                                            <td><t t-esc="line.subtotal"/></td>
+                                            <td><t t-esc="line.product_id.name or 'N/A'"/></td>
+                                            <td><t t-esc="line.quantity or 0"/></td>
+                                            <td><t t-esc="line.price_unit or 0.0"/></td>
+                                            <td><t t-esc="line.subtotal or 0.0"/></td>
                                         </tr>
                                     </t>
                                 </tbody>
                             </table>
                         </div>
+
+                        <!-- Total de la orden -->
                         <div class="row mt32">
                             <div class="col-12 text-right">
-                                <h3>Total: <t t-esc="doc.value"/></h3>
+                                <h3>Total: <t t-esc="doc.value or 0.0"/></h3>
                             </div>
                         </div>
-                        <!-- Sección para mostrar imágenes adjuntas -->
+
+                        <!-- Sección para imágenes adjuntas -->
                         <div class="row mt32">
                             <h4>Imágenes Adjuntas:</h4>
                             <t t-foreach="doc.image_ids" t-as="image">
-                                <div class="image-section">
-                                    <img t-att-src="'data:image/png;base64,' + image.image.decode()" alt="Adjunto"/>
+                                <div class="col-3 image-section">
+                                    <!-- Ajuste de la imagen para evitar problemas con bytes -->
+                                    <img t-att-src="'data:image/png;base64,' + image.image" alt="Adjunto"/>
                                 </div>
                             </t>
                         </div>
+
                         <!-- Estilos para las imágenes -->
                         <style>
                             .image-section img {
                                 max-width: 200px;
                                 max-height: 200px;
+                                margin-bottom: 10px;
                             }
                         </style>
                     </div>
