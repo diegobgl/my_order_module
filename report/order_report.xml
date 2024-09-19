@@ -1,14 +1,11 @@
 <odoo>
-    <!-- Definimos la acción del reporte para Orden de Trabajo -->
     <report
         id="action_report_work_order"
         model="work.order"
-        string="Reporte de Orden de Trabajo"
+        string="Orden de Trabajo"
         report_type="qweb-pdf"
         name="my_order_module.order_report_template"
         file="my_order_module.order_report_template"
-        print_report_name="'Orden de Trabajo - %s' % (object.title)"
-        attachment_use="False"
-        attachment="False"
+        print_report_name="'Orden de Trabajo - ' + object.name"
     />
 </odoo>
