@@ -50,7 +50,7 @@
                         </div>
 
                         <!-- Sección para imágenes adjuntas -->
-                        <div class="row mt32" style="text-align: left;">
+                        <!--div class="row mt32" style="text-align: left;">
                             <h4>Imágenes Adjuntas:</h4>
                             <div class="image-gallery">
                                 <t t-foreach="doc.image_ids" t-as="image">
@@ -59,7 +59,7 @@
                                     </div>
                                 </t>
                             </div>
-                        </div>
+                        </div-->
 
                         <!-- Estilos para mejorar la presentación -->
                     </div>
