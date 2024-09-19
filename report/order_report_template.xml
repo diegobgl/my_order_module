@@ -55,8 +55,8 @@
                             <h4>Imágenes Adjuntas:</h4>
                             <t t-foreach="doc.image_ids" t-as="image">
                                 <div class="col-3 image-section">
-                                    <!-- Ajuste de la imagen para evitar problemas con bytes -->
-                                    <img t-att-src="'data:image/png;base64,' + image.image" alt="Adjunto"/>
+                                    <!-- Solución al error de concatenación de bytes con str -->
+                                    <img t-att-src="'data:image/png;base64,' + image.image.decode('utf-8')" alt="Adjunto"/>
                                 </div>
                             </t>
                         </div>
