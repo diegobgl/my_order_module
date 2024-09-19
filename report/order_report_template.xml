@@ -1,38 +1,46 @@
 <odoo>
-    <template id="report_work_order">
+    <template id="order_report_template">
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="doc">
+                <t t-set="company" t-value="doc.company_id"/>
                 <div class="page">
-                    <h2>Orden de Trabajo</h2>
-                    <p><strong>Número Orden:</strong> <t t-esc="doc.order_number"/></p>
-                    <p><strong>Cliente:</strong> <t t-esc="doc.client_id.name"/></p>
-                    <p><strong>Trabajador:</strong> <t t-esc="doc.worker_id.name"/></p>
-                    <p><strong>Fecha:</strong> <t t-esc="doc.date"/></p>
-                    <p><strong>Dirección:</strong> <t t-esc="doc.address"/></p>
-                    <p><strong>Ciudad:</strong> <t t-esc="doc.city"/></p>
-                    <p><strong>Bloque Horario:</strong> <t t-esc="doc.time_block"/></p>
-                    <p><strong>Productos:</strong></p>
-                    <table class="table table-sm">
-                        <thead>
-                            <tr>
-                                <th>Producto</th>
-                                <th>Cantidad</th>
-                                <th>Precio Unitario</th>
-                                <th>Subtotal</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <t t-foreach="doc.product_ids" t-as="line">
+                    <div class="row">
+                        <div class="col-6">
+                            <h2>Orden de Trabajo: <t t-esc="doc.title"/></h2>
+                        </div>
+                        <div class="col-6 text-right">
+                            <h4>Fecha: <t t-esc="doc.date"/></h4>
+                            <h4>Cliente: <t t-esc="doc.client_id.name"/></h4>
+                        </div>
+                    </div>
+                    <div class="row mt32">
+                        <h4>Productos</h4>
+                        <table class="table table-sm">
+                            <thead>
                                 <tr>
-                                    <td><t t-esc="line.product_id.name"/></td>
-                                    <td><t t-esc="line.quantity"/></td>
-                                    <td><t t-esc="line.price_unit"/></td>
-                                    <td><t t-esc="line.subtotal"/></td>
+                                    <th>Producto</th>
+                                    <th>Cantidad</th>
+                                    <th>Precio</th>
+                                    <th>Subtotal</th>
                                 </tr>
-                            </t>
-                        </tbody>
-                    </table>
-                    <p><strong>Valor Total:</strong> <t t-esc="doc.value"/></p>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="doc.product_ids" t-as="line">
+                                    <tr>
+                                        <td><t t-esc="line.product_id.name"/></td>
+                                        <td><t t-esc="line.quantity"/></td>
+                                        <td><t t-esc="line.price_unit"/></td>
+                                        <td><t t-esc="line.subtotal"/></td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row mt32">
+                        <div class="col-12 text-right">
+                            <h3>Total: <t t-esc="doc.value"/></h3>
+                        </div>
+                    </div>
                 </div>
             </t>
         </t>
