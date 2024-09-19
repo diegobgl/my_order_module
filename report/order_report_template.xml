@@ -57,8 +57,7 @@
                 </div>
             </t>
         </t>
-    </template>
-
+     </template>
     <record id="action_report_work_order" model="ir.actions.report">
         <field name="name">Orden de Trabajo</field>
         <field name="model">work.order</field>
