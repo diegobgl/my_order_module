@@ -48,7 +48,7 @@
                             <h4>Imágenes Adjuntas:</h4>
                             <t t-foreach="doc.image_ids" t-as="image">
                                 <div class="image-section">
-                                    <img t-att-src="'data:image/png;base64,' + image.datas" alt="Adjunto"/>
+                                    <img t-att-src="'data:image/png;base64,' + image.image" alt="Adjunto"/>
                                 </div>
                             </t>
                         </div>
