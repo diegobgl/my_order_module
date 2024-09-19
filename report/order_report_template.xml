@@ -18,7 +18,7 @@
                         </div>
 
                         <!-- Tabla de productos ajustada -->
-                        <div class="row mt32" style="text-align: left;">
+                        <div class="row " style="text-align: left;">
                             <h4>Productos</h4>
                             <table class="table table-sm" style="width: 100%; border: 1px solid #ddd; text-align: left; margin-left: 0; font-size: 12px;">
                                 <thead>
