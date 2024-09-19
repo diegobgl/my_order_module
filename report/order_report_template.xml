@@ -1,63 +1,71 @@
-<?xm version="1.0" encodig "UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <template id="order_report_template">
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="doc">
                 <t t-call="web.external_layout">
-                <t t-set="company" t-value="doc.client_id"/>
-                <div class="page">
-                    <div class="row">
-                        <div class="col-6">
-                            <h2>Orden de Trabajo: <t t-esc="doc.title"/></h2>
-                        </div>
-                        <div class="col-6 text-right">
-                            <h4>Fecha: <t t-esc="doc.date"/></h4>
-                            <h4>Cliente: <t t-esc="doc.client_id.name"/></h4>
-                        </div>
-                    </div>
-                    <div class="row mt32">
-                        <h4>Productos</h4>
-                        <table class="table table-sm">
-                            <thead>
-                                <tr>
-                                    <th>Producto</th>
-                                    <th>Cantidad</th>
-                                    <th>Precio</th>
-                                    <th>Subtotal</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <t t-foreach="doc.product_ids" t-as="line">
-                                    <tr>
-                                        <td><t t-esc="line.product_id.name"/></td>
-                                        <td><t t-esc="line.quantity"/></td>
-                                        <td><t t-esc="line.price_unit"/></td>
-                                        <td><t t-esc="line.subtotal"/></td>
-                                    </tr>
-                                </t>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="row mt32">
-                        <div class="col-12 text-right">
-                            <h3>Total: <t t-esc="doc.value"/></h3>
-                        </div>
-                        <t t-foreach="doc.image_ids" t-as="image">
-                     <div class="image-section">
-                                <img t-att-src="'data:image/png;base64,' + image.datas" alt="Adjunto"/>
+                    <t t-set="company" t-value="doc.client_id"/>
+                    <div class="page">
+                        <div class="row">
+                            <div class="col-6">
+                                <h2>Orden de Trabajo: <t t-esc="doc.title"/></h2>
                             </div>
-                        </t>
-                    <style>
+                            <div class="col-6 text-right">
+                                <h4>Fecha: <t t-esc="doc.date"/></h4>
+                                <h4>Cliente: <t t-esc="doc.client_id.name"/></h4>
+                            </div>
+                        </div>
+                        <div class="row mt32">
+                            <h4>Productos</h4>
+                            <table class="table table-sm">
+                                <thead>
+                                    <tr>
+                                        <th>Producto</th>
+                                        <th>Cantidad</th>
+                                        <th>Precio</th>
+                                        <th>Subtotal</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-foreach="doc.product_ids" t-as="line">
+                                        <tr>
+                                            <td><t t-esc="line.product_id.name"/></td>
+                                            <td><t t-esc="line.quantity"/></td>
+                                            <td><t t-esc="line.price_unit"/></td>
+                                            <td><t t-esc="line.subtotal"/></td>
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="row mt32">
+                            <div class="col-12 text-right">
+                                <h3>Total: <t t-esc="doc.value"/></h3>
+                            </div>
+                        </div>
+                        <!-- Sección para mostrar imágenes adjuntas -->
+                        <div class="row mt32">
+                            <h4>Imágenes Adjuntas:</h4>
+                            <t t-foreach="doc.image_ids" t-as="image">
+                                <div class="image-section">
+                                    <img t-att-src="'data:image/png;base64,' + image.datas" alt="Adjunto"/>
+                                </div>
+                            </t>
+                        </div>
+                        <!-- Estilos para las imágenes -->
+                        <style>
                             .image-section img {
-                                max-width: 200px;  <!-- Define el tamaño máximo de las imágenes -->
+                                max-width: 200px;
                                 max-height: 200px;
                             }
-                    </style>
+                        </style>
                     </div>
-                </div>
+                </t>
             </t>
         </t>
-     </template>
+    </template>
+
+    <!-- Registro del reporte -->
     <record id="action_report_work_order" model="ir.actions.report">
         <field name="name">Orden de Trabajo</field>
         <field name="model">work.order</field>
