@@ -5,7 +5,7 @@
             <t t-foreach="docs" t-as="doc">
                 <t t-call="web.external_layout">
                     <t t-set="company" t-value="doc.company_id"/>
-                    <div class="page" style="width: 100%; margin: 0 auto; padding: 20px;">
+                    <div class="page" style="width: 100%; padding: 20px;">
                         <!-- Cabecera de la orden -->
                         <div class="row">
                             <div class="col-6" style="text-align: left;">
@@ -17,16 +17,16 @@
                             </div>
                         </div>
 
-                        <!-- Tabla de productos con alineación a la izquierda -->
+                        <!-- Tabla de productos ajustada -->
                         <div class="row mt32" style="text-align: left;">
                             <h4>Productos</h4>
-                            <table class="table table-sm" style="width: 100%; border: 1px solid #ddd; text-align: left; margin-left: 0;">
+                            <table class="table table-sm" style="width: 100%; border: 1px solid #ddd; text-align: left; margin-left: 0; font-size: 12px;">
                                 <thead>
                                     <tr>
-                                        <th style="text-align: left;">Producto</th>
-                                        <th style="text-align: left;">Cantidad</th>
-                                        <th style="text-align: left;">Precio</th>
-                                        <th style="text-align: left;">Subtotal</th>
+                                        <th style="width: 40%; text-align: left;">Producto</th>
+                                        <th style="width: 20%; text-align: left;">Cantidad</th>
+                                        <th style="width: 20%; text-align: left;">Precio</th>
+                                        <th style="width: 20%; text-align: left;">Subtotal</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -50,7 +50,7 @@
                         </div>
 
                         <!-- Sección para imágenes adjuntas -->
-                        <!--div class="row mt32" style="text-align: left;">
+                        <div class="row mt32" style="text-align: left;">
                             <h4>Imágenes Adjuntas:</h4>
                             <div class="image-gallery">
                                 <t t-foreach="doc.image_ids" t-as="image">
@@ -59,9 +59,43 @@
                                     </div>
                                 </t>
                             </div>
-                        </div-->
+                        </div>
 
                         <!-- Estilos para mejorar la presentación -->
+                        <style>
+                            .page {
+                                text-align: left;
+                                margin: 0 auto;
+                                padding: 20px;
+                                box-sizing: border-box;
+                            }
+                            .image-section img {
+                                max-width: 200px;
+                                max-height: 200px;
+                                margin-bottom: 10px;
+                                display: block;
+                            }
+                            .image-gallery {
+                                display: flex;
+                                flex-wrap: wrap;
+                                gap: 10px;
+                            }
+                            table {
+                                border-collapse: collapse;
+                                width: 100%;
+                                margin-left: 0;
+                                margin-right: 0;
+                            }
+                            th, td {
+                                padding: 5px;
+                                text-align: left;
+                                border: 1px solid #ddd;
+                            }
+                            th {
+                                font-weight: bold;
+                                background-color: #f0f0f0;
+                            }
+                        </style>
                     </div>
                 </t>
             </t>
