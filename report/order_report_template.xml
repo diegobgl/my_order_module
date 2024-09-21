@@ -13,7 +13,7 @@
                             <img t-att-src="'data:image/png;base64,' + company.logo.decode('utf-8')" 
                                 style="max-width: 100px; max-height: 50px;" alt="Logo"/>
                         </div>
-                        <div class="col-6" style="text-align: right; font-size: 12px;">
+                        <div class="col-6" style="text-align: left; font-size: 12px;">
                             <p><strong><t t-esc="company.name or ''"/></strong></p>
                             <p><t t-esc="company.street or ''"/> <t t-esc="company.zip or ''"/> <t t-esc="company.city or ''"/></p>
                             <p><t t-esc="company.country_id.name or ''"/></p>
