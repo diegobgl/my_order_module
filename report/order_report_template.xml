@@ -8,7 +8,7 @@
 
                     <div class="header" style="display: flex; justify-content: space-between;">
                         <div class="company-info" style="text-align: left;">
-                            <h3>Compañía: <t t-esc="doc.company_id.name"/></h3>
+                            <h3> <t t-esc="doc.company_id.name"/></h3>
                             <p>Dirección: <t t-esc="doc.company_id.street or ''"/> <t t-esc="doc.company_id.city or ''"/></p>
                             <p>Teléfono: <t t-esc="doc.company_id.phone or ''"/></p>
                         </div>
@@ -19,7 +19,7 @@
                             <h2>Orden de Trabajo: <t t-esc="doc.title or 'Sin título'"/></h2>
                             <p>Número de Orden: <t t-esc="doc.order_number"/></p>
                         </div>
-                        <div class="col-6" style="text-align: right;">
+                        <div class="col-6" style="text-align: left;">
                             <h4>Fecha: <t t-esc="doc.date or ''"/></h4>
                             <h4>Cliente: <t t-esc="doc.client_id.name or ''"/></h4>
                             <p>Dirección: <t t-esc="doc.address or ''"/>, <t t-esc="doc.city or ''"/></p>
