@@ -1,10 +1,22 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <template id="order_report_template">
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="doc">
                 <div class="page" style="width: 100%; padding: 20px;">
                     
+                    <!-- Header Ajustado -->
+                    <div class="row" style="margin-bottom: 20px;">
+                        <div class="col-6" style="text-align: left;">
+                            <img t-att-src="'data:image/png;base64,' + company.logo.decode('utf-8')" 
+                                style="max-width: 100px; max-height: 50px;" alt="Logo"/>
+                        </div>
+                        <div class="col-6" style="text-align: right; font-size: 12px;">
+                            <p><strong><t t-esc="company.name"/></strong></p>
+                            <p><t t-esc="company.street"/> <t t-esc="company.zip"/> <t t-esc="company.city"/></p>
+                            <p><t t-esc="company.country_id.name"/></p>
+                        </div>
+                    </div>
+
                     <!-- Cabecera de la orden -->
                     <div class="row" style="margin-bottom: 20px;">
                         <div class="col-6" style="text-align: left;">
