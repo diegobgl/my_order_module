@@ -5,7 +5,7 @@
             <t t-foreach="docs" t-as="doc">
                 <t t-call="web.external_layout">
                     <t t-set="company" t-value="doc.company_id"/>
-                    <div class="page" style="width: 100%; padding: 20px;">
+                    <div class="page" style="width: 100%; padding: 5px;">
                         
                         <!-- Cabecera de la orden -->
                         <div class="row" style="margin-bottom: 20px;">
@@ -17,11 +17,10 @@
                                 <h4 style="margin: 0;">Cliente: <t t-esc="doc.client_id.name or ''"/></h4>
                             </div>
                         </div>
-
                         <!-- Tabla de productos ajustada y alineada -->
                         <div class="row" style="text-align: left;">
                             <h4 style="margin-bottom: 10px;">Productos</h4>
-                            <table class="table table-sm" style="width: 100%; border-collapse: collapse; border: 1px solid #ddd; font-size: 12px;">
+                            <table class="table table-sm" style="width: 50%; border-collapse: collapse; border: 1px solid #ddd; font-size: 12px;">
                                 <thead>
                                     <tr>
                                         <th style="width: 50%; text-align: left; border: 1px solid #ddd; padding: 8px;">Producto</th>
