@@ -3,7 +3,16 @@
     <template id="order_report_template">
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="doc">
-                <div class="page" style="width: 100%; padding: 0px;">
+                <!-- Header con los datos de la compañía alineados a la izquierda -->
+                <div class="page" style="width: 100%; padding: 10px;">
+
+                    <div class="header" style="display: flex; justify-content: space-between;">
+                        <div class="company-info" style="text-align: left;">
+                            <h3>Compañía: <t t-esc="doc.company_id.name"/></h3>
+                            <p>Dirección: <t t-esc="doc.company_id.street or ''"/> <t t-esc="doc.company_id.city or ''"/></p>
+                            <p>Teléfono: <t t-esc="doc.company_id.phone or ''"/></p>
+                        </div>
+                    </div>
                     <!-- Cabecera de la orden -->
                     <div class="row" style="margin-bottom: 10px;">
                         <div class="col-6" style="text-align: left;">
