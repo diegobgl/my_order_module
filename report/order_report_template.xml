@@ -53,7 +53,8 @@
                         <div class="image-gallery" style="display: flex; flex-wrap: wrap; gap: 5px;">
                             <t t-foreach="doc.image_ids" t-as="image">
                                 <div class="image-section">
-                                    <img t-att-src="'data:image/png;base64,' + image.image" alt="Imagen adjunta" style="max-width: 150px; max-height: 150px;"/>
+                                    <!-- Decodificar la imagen antes de concatenar -->
+                                    <img t-att-src="'data:image/png;base64,' + image.image.decode('utf-8')" alt="Imagen adjunta" style="max-width: 150px; max-height: 150px;"/>
                                 </div>
                             </t>
                         </div>
