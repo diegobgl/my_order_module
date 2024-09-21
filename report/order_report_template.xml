@@ -13,14 +13,16 @@
                             <p>Teléfono: <t t-esc="doc.company_id.phone or ''"/></p>
                         </div>
                     </div>
-                    <!-- Cabecera de la orden -->
+                    <!-- Cabecera de la orden con datos de la empresa -->
                     <div class="row" style="margin-bottom: 10px;">
                         <div class="col-6" style="text-align: left;">
                             <h2>Orden de Trabajo: <t t-esc="doc.title or 'Sin título'"/></h2>
+                            <p>Número de Orden: <t t-esc="doc.order_number"/></p>
                         </div>
                         <div class="col-6" style="text-align: right;">
                             <h4>Fecha: <t t-esc="doc.date or ''"/></h4>
                             <h4>Cliente: <t t-esc="doc.client_id.name or ''"/></h4>
+                            <p>Dirección: <t t-esc="doc.address or ''"/>, <t t-esc="doc.city or ''"/></p>
                         </div>
                     </div>
 
@@ -52,9 +54,23 @@
                     <!-- Total de la orden -->
                     <div class="row" style="margin-top: 10px;">
                         <div class="col-12" style="text-align: right;">
-                            <h3>Total: <t t-esc="doc.value or 0.0"/></h3>
+                            <h3>Total: <t t-esc="doc.value or 0.0"/> <t t-esc="doc.currency_id.symbol"/></h3>
                         </div>
                     </div>
+
+                    <!-- Información adicional -->
+                    <div class="row" style="margin-top: 10px;">
+                        <div class="col-6">
+                            <p>Trabajador: <t t-esc="doc.worker_id.name or 'No asignado'"/></p>
+                            <p>Estado: <t t-esc="doc.state"/></p>
+                            <p>Pedido de Ventas: <t t-esc="doc.sale_order_id.name or 'No asignado'"/></p>
+                        </div>
+                        <div class="col-6 text-right">
+                            <p>Bloque Horario: <t t-esc="doc.time_block or 'No especificado'"/></p>
+                        </div>
+                    </div>
+
+
 
                     <!-- Sección para imágenes adjuntas -->
                     <div class="row" style="margin-top: 10px;">
