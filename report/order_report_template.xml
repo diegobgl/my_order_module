@@ -3,95 +3,93 @@
     <template id="order_report_template">
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="doc">
-                <t t-call="web.external_layout">
-                    <t t-set="company" t-value="doc.company_id"/>
-                    <div class="page" style="width: 100%; padding: 5px;">
-                        
-                        <!-- Cabecera de la orden -->
-                        <div class="row" style="margin-bottom: 20px;">
-                            <div class="col-6" style="text-align: left;">
-                                <h2 style="margin: 0;">Orden de Trabajo: <t t-esc="doc.title or 'Sin título'"/></h2>
-                            </div>
-                            <div class="col-6" style="text-align: right;">
-                                <h4 style="margin: 0;">Fecha: <t t-esc="doc.date or ''"/></h4>
-                                <h4 style="margin: 0;">Cliente: <t t-esc="doc.client_id.name or ''"/></h4>
-                            </div>
+                <div class="page" style="width: 100%; padding: 20px;">
+                    
+                    <!-- Cabecera de la orden -->
+                    <div class="row" style="margin-bottom: 20px;">
+                        <div class="col-6" style="text-align: left;">
+                            <h2 style="margin: 0;">Orden de Trabajo: <t t-esc="doc.title or 'Sin título'"/></h2>
                         </div>
-                        <!-- Tabla de productos ajustada y alineada -->
-                        <div class="row" style="text-align: left;">
-                            <h4 style="margin-bottom: 10px;">Productos</h4>
-                            <table class="table table-sm" style="width: 50%; border-collapse: collapse; border: 1px solid #ddd; font-size: 12px;">
-                                <thead>
-                                    <tr>
-                                        <th style="width: 50%; text-align: left; border: 1px solid #ddd; padding: 8px;">Producto</th>
-                                        <th style="width: 15%; text-align: left; border: 1px solid #ddd; padding: 8px;">Cantidad</th>
-                                        <th style="width: 20%; text-align: left; border: 1px solid #ddd; padding: 8px;">Precio</th>
-                                        <th style="width: 15%; text-align: left; border: 1px solid #ddd; padding: 8px;">Subtotal</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <t t-foreach="doc.product_ids" t-as="line">
-                                        <tr>
-                                            <td style="border: 1px solid #ddd; padding: 8px;"><t t-esc="line.product_id.name or 'N/A'"/></td>
-                                            <td style="border: 1px solid #ddd; padding: 8px;"><t t-esc="line.quantity or 0"/></td>
-                                            <td style="border: 1px solid #ddd; padding: 8px;"><t t-esc="line.price_unit or 0.0"/></td>
-                                            <td style="border: 1px solid #ddd; padding: 8px;"><t t-esc="line.subtotal or 0.0"/></td>
-                                        </tr>
-                                    </t>
-                                </tbody>
-                            </table>
+                        <div class="col-6" style="text-align: right;">
+                            <h4 style="margin: 0;">Fecha: <t t-esc="doc.date or ''"/></h4>
+                            <h4 style="margin: 0;">Cliente: <t t-esc="doc.client_id.name or ''"/></h4>
                         </div>
-
-                        <!-- Total de la orden -->
-                        <div class="row" style="margin-top: 20px;">
-                            <div class="col-12" style="text-align: right;">
-                                <h3>Total: <t t-esc="doc.value or 0.0"/></h3>
-                            </div>
-                        </div>
-
-                        <!-- Sección para imágenes adjuntas -->
-                        <div class="row" style="margin-top: 20px;">
-                            <h4>Imágenes Adjuntas:</h4>
-                            <div class="image-gallery" style="display: flex; flex-wrap: wrap; gap: 10px;">
-                                <t t-foreach="doc.image_ids" t-as="image">
-                                    <div class="image-section" style="max-width: 200px; max-height: 200px; margin-right: 10px;">
-                                        <img t-att-src="'data:image/png;base64,' + image.image.decode('utf-8')" alt="Adjunto" style="max-width: 100%; max-height: 100%; display: block;"/>
-                                    </div>
-                                </t>
-                            </div>
-                        </div>
-
-                        <!-- Estilos internos -->
-                        <style>
-                            .page {
-                                padding: 10px;
-                                margin: 0 auto;
-                                width: 100%;
-                                max-width: 100%;
-                                box-sizing: border-box;
-                                page-break-after: auto;
-                            }
-                            h2, h3, h4 {
-                                margin: 5px 0;
-                                font-weight: normal;
-                            }
-                            table {
-                                margin: 0;
-                                padding: 0;
-                                border-spacing: 0;
-                                width: 100%;
-                            }
-                            th, td {
-                                border: 1px solid #ddd;
-                                padding: 8px;
-                                text-align: left;
-                            }
-                            th {
-                                background-color: #f9f9f9;
-                            }
-                        </style>
                     </div>
-                </t>
+
+                    <!-- Tabla de productos ajustada y alineada -->
+                    <div class="row" style="text-align: left;">
+                        <h4 style="margin-bottom: 10px;">Productos</h4>
+                        <table class="table table-sm" style="width: 100%; border-collapse: collapse; border: 1px solid #ddd; font-size: 12px;">
+                            <thead>
+                                <tr>
+                                    <th style="width: 50%; text-align: left; border: 1px solid #ddd; padding: 8px;">Producto</th>
+                                    <th style="width: 15%; text-align: left; border: 1px solid #ddd; padding: 8px;">Cantidad</th>
+                                    <th style="width: 20%; text-align: left; border: 1px solid #ddd; padding: 8px;">Precio</th>
+                                    <th style="width: 15%; text-align: left; border: 1px solid #ddd; padding: 8px;">Subtotal</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="doc.product_ids" t-as="line">
+                                    <tr>
+                                        <td style="border: 1px solid #ddd; padding: 8px;"><t t-esc="line.product_id.name or 'N/A'"/></td>
+                                        <td style="border: 1px solid #ddd; padding: 8px;"><t t-esc="line.quantity or 0"/></td>
+                                        <td style="border: 1px solid #ddd; padding: 8px;"><t t-esc="line.price_unit or 0.0"/></td>
+                                        <td style="border: 1px solid #ddd; padding: 8px;"><t t-esc="line.subtotal or 0.0"/></td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Total de la orden -->
+                    <div class="row" style="margin-top: 20px;">
+                        <div class="col-12" style="text-align: right;">
+                            <h3>Total: <t t-esc="doc.value or 0.0"/></h3>
+                        </div>
+                    </div>
+
+                    <!-- Sección para imágenes adjuntas -->
+                    <div class="row" style="margin-top: 20px;">
+                        <h4>Imágenes Adjuntas:</h4>
+                        <div class="image-gallery" style="display: flex; flex-wrap: wrap; gap: 10px;">
+                            <t t-foreach="doc.image_ids" t-as="image">
+                                <div class="image-section" style="max-width: 200px; max-height: 200px; margin-right: 10px;">
+                                    <img t-att-src="'data:image/png;base64,' + image.image.decode('utf-8')" alt="Adjunto" style="max-width: 100%; max-height: 100%; display: block;"/>
+                                </div>
+                            </t>
+                        </div>
+                    </div>
+
+                    <!-- Estilos internos -->
+                    <style>
+                        .page {
+                            padding: 10px;
+                            margin: 0 auto;
+                            width: 100%;
+                            max-width: 100%;
+                            box-sizing: border-box;
+                            page-break-after: auto;
+                        }
+                        h2, h3, h4 {
+                            margin: 5px 0;
+                            font-weight: normal;
+                        }
+                        table {
+                            margin: 0;
+                            padding: 0;
+                            border-spacing: 0;
+                            width: 100%;
+                        }
+                        th, td {
+                            border: 1px solid #ddd;
+                            padding: 8px;
+                            text-align: left;
+                        }
+                        th {
+                            background-color: #f9f9f9;
+                        }
+                    </style>
+                </div>
             </t>
         </t>
     </template>
