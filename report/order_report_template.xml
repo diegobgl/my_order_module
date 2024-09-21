@@ -2,8 +2,8 @@
     <template id="order_report_template">
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="doc">
-                <!-- Layout interno para la estructura general -->
-                <div class="a4-page" style="width: 210mm; height: 297mm; padding: 20mm; margin: 0 auto; box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);">
+                <!-- Layout interno ajustado a A4 sin márgenes -->
+                <div class="a4-page" style="width: 210mm; height: 297mm; padding: 0mm; margin: 0; box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);">
                     
                     <!-- Cabecera de la orden -->
                     <div class="row" style="margin-bottom: 20px;">
@@ -63,7 +63,7 @@
                     <!-- Estilos internos -->
                     <style>
                         .a4-page {
-                            padding: 20mm;
+                            padding: 0mm;
                             width: 210mm;
                             height: 297mm;
                             box-sizing: border-box;
