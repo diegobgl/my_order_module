@@ -53,8 +53,8 @@
                         <h4>Imágenes Adjuntas:</h4>
                         <div class="image-gallery" style="display: flex; flex-wrap: wrap; gap: 10px;">
                             <t t-foreach="doc.image_ids" t-as="image">
-                                <div class="image-section" style="max-width: 200px; max-height: 200px; margin-right: 10px;">
-                                    <img t-att-src="'data:image/png;base64,' + image.image.decode('utf-8')" alt="Adjunto" style="max-width: 100%; max-height: 100%; display: block;"/>
+                                <div class="image-section">
+                                    <img t-att-src="'data:image/png;base64,' + image.image.decode('utf-8')" alt="Imagen adjunta"/>
                                 </div>
                             </t>
                         </div>
