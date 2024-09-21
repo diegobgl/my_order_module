@@ -3,38 +3,38 @@
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="doc">
                 <!-- Layout interno ajustado a A4 sin márgenes -->
-                <div class="a4-page" style="width: 210mm; height: 297mm; padding: 0mm; margin: 0; box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);">
+                <div class="a4-page" style="width: 210mm; height: 297mm; padding: 0mm; margin: 0; box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); page-break-inside: avoid;">
                     
                     <!-- Cabecera de la orden -->
-                    <div class="row" style="margin-bottom: 20px;">
+                    <div class="row" style="margin-bottom: 10px;">
                         <div class="col-6" style="text-align: left;">
-                            <h2 style="margin: 0;">Orden de Trabajo: <t t-esc="doc.title or 'Sin título'"/></h2>
+                            <h2 style="margin: 0; font-size: 16px;">Orden de Trabajo: <t t-esc="doc.title or 'Sin título'"/></h2>
                         </div>
                         <div class="col-6" style="text-align: right;">
-                            <h4 style="margin: 0;">Fecha: <t t-esc="doc.date or ''"/></h4>
-                            <h4 style="margin: 0;">Cliente: <t t-esc="doc.client_id.name or ''"/></h4>
+                            <h4 style="margin: 0; font-size: 12px;">Fecha: <t t-esc="doc.date or ''"/></h4>
+                            <h4 style="margin: 0; font-size: 12px;">Cliente: <t t-esc="doc.client_id.name or ''"/></h4>
                         </div>
                     </div>
 
                     <!-- Tabla de productos ajustada y alineada -->
                     <div class="row" style="text-align: left;">
-                        <h4 style="margin-bottom: 10px;">Productos</h4>
-                        <table class="table table-sm" style="width: 100%; border-collapse: collapse; border: 1px solid #ddd; font-size: 12px;">
+                        <h4 style="margin-bottom: 5px; font-size: 14px;">Productos</h4>
+                        <table class="table table-sm" style="width: 100%; border-collapse: collapse; border: 1px solid #ddd; font-size: 10px;">
                             <thead>
                                 <tr>
-                                    <th style="width: 50%; text-align: left; border: 1px solid #ddd; padding: 8px;">Producto</th>
-                                    <th style="width: 15%; text-align: left; border: 1px solid #ddd; padding: 8px;">Cantidad</th>
-                                    <th style="width: 20%; text-align: left; border: 1px solid #ddd; padding: 8px;">Precio</th>
-                                    <th style="width: 15%; text-align: left; border: 1px solid #ddd; padding: 8px;">Subtotal</th>
+                                    <th style="width: 50%; text-align: left; border: 1px solid #ddd; padding: 4px;">Producto</th>
+                                    <th style="width: 15%; text-align: left; border: 1px solid #ddd; padding: 4px;">Cantidad</th>
+                                    <th style="width: 20%; text-align: left; border: 1px solid #ddd; padding: 4px;">Precio</th>
+                                    <th style="width: 15%; text-align: left; border: 1px solid #ddd; padding: 4px;">Subtotal</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <t t-foreach="doc.product_ids" t-as="line">
                                     <tr>
-                                        <td style="border: 1px solid #ddd; padding: 8px;"><t t-esc="line.product_id.name or 'N/A'"/></td>
-                                        <td style="border: 1px solid #ddd; padding: 8px;"><t t-esc="line.quantity or 0"/></td>
-                                        <td style="border: 1px solid #ddd; padding: 8px;"><t t-esc="line.price_unit or 0.0"/></td>
-                                        <td style="border: 1px solid #ddd; padding: 8px;"><t t-esc="line.subtotal or 0.0"/></td>
+                                        <td style="border: 1px solid #ddd; padding: 4px;"><t t-esc="line.product_id.name or 'N/A'"/></td>
+                                        <td style="border: 1px solid #ddd; padding: 4px;"><t t-esc="line.quantity or 0"/></td>
+                                        <td style="border: 1px solid #ddd; padding: 4px;"><t t-esc="line.price_unit or 0.0"/></td>
+                                        <td style="border: 1px solid #ddd; padding: 4px;"><t t-esc="line.subtotal or 0.0"/></td>
                                     </tr>
                                 </t>
                             </tbody>
@@ -42,19 +42,19 @@
                     </div>
 
                     <!-- Total de la orden -->
-                    <div class="row" style="margin-top: 20px;">
+                    <div class="row" style="margin-top: 10px;">
                         <div class="col-12" style="text-align: right;">
-                            <h3>Total: <t t-esc="doc.value or 0.0"/></h3>
+                            <h3 style="font-size: 14px;">Total: <t t-esc="doc.value or 0.0"/></h3>
                         </div>
                     </div>
 
                     <!-- Sección para imágenes adjuntas -->
-                    <div class="row" style="margin-top: 20px;">
-                        <h4>Imágenes Adjuntas:</h4>
-                        <div class="image-gallery" style="display: flex; flex-wrap: wrap; gap: 10px;">
+                    <div class="row" style="margin-top: 10px;">
+                        <h4 style="font-size: 14px;">Imágenes Adjuntas:</h4>
+                        <div class="image-gallery" style="display: flex; flex-wrap: wrap; gap: 5px;">
                             <t t-foreach="doc.image_ids" t-as="image">
-                                <div class="image-section">
-                                    <img t-att-src="'data:image/png;base64,' + image.image.decode('utf-8')" alt="Imagen adjunta" style="max-width: 200px; max-height: 200px;"/>
+                                <div class="image-section" style="padding: 0;">
+                                    <img t-att-src="'data:image/png;base64,' + image.image.decode('utf-8')" alt="Imagen adjunta" style="max-width: 150px; max-height: 150px;"/>
                                 </div>
                             </t>
                         </div>
@@ -83,7 +83,7 @@
 
                         th, td {
                             border: 1px solid #ddd;
-                            padding: 8px;
+                            padding: 4px;
                             text-align: left;
                         }
 
@@ -92,8 +92,12 @@
                         }
 
                         .image-section img {
-                            max-width: 200px;
-                            max-height: 200px;
+                            max-width: 150px;
+                            max-height: 150px;
+                        }
+
+                        .a4-page * {
+                            page-break-inside: avoid;
                         }
                     </style>
                 </div>
